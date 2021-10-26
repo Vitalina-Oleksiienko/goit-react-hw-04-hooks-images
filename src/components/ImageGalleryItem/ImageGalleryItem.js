@@ -1,16 +1,20 @@
 import PropTypes from 'prop-types';
-import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 
-export default function ImageGallery({ onModalOpen, images }) {
-  return (
-    <>
-      <ul onClick={onModalOpen} className="ImageGallery">
-        <ImageGalleryItem images={images} />
-      </ul>
-    </>
-  );
+export default function ImageGalleryItem({ images }) {
+  return images.map(({ webformatURL, id, tags }) => {
+    return (
+      <li key={id} className="ImageGalleryItem">
+        <img
+          id={id}
+          src={webformatURL}
+          alt={tags}
+          className="ImageGalleryItem-image"
+        />
+      </li>
+    );
+  });
 }
 
-ImageGallery.propTypes = {
-  onModalOpen: PropTypes.func,
+ImageGalleryItem.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.object),
 };
