@@ -1,26 +1,16 @@
-import { Component } from "react";
 import PropTypes from 'prop-types';
+import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 
-export default class ImageGalleryItem extends Component {
-    state = {
-        modalIsOpen: false,
-    };
-    render() {
-        return this.props.images.map(({ webformatURL, id, tags }) => {
-            return (
-                <li key={id} className="ImageGalleryItem">
-                    <img
-                        id={id}
-                        src={webformatURL}
-                        alt={tags}
-                        className="ImageGalleryItem-image"
-                    />
-                </li>
-            );
-        });
-    }
+export default function ImageGallery({ onModalOpen, images }) {
+  return (
+    <>
+      <ul onClick={onModalOpen} className="ImageGallery">
+        <ImageGalleryItem images={images} />
+      </ul>
+    </>
+  );
 }
 
-ImageGalleryItem.propTypes = {
-    images: PropTypes.arrayOf(PropTypes.object),
+ImageGallery.propTypes = {
+  onModalOpen: PropTypes.func,
 };
