@@ -1,18 +1,18 @@
-import { Component } from "react";
 import PropTypes from 'prop-types';
 
-export default class Button extends Component {
-    hendleClick = () => {
-        return this.props.onClick(1);
+export default function Button({onClick}) {
+   const hendleClick = () => {
+        return onClick(1);
     };
 
-    render() {
         return (
-            <button onClick={this.hendleClick} className="Button" type="button">Load more</button>
+            <button onClick = { hendleClick } 
+                    className = "Button" 
+                    type = "button" > Load more</button>
         )
             
     }
-}
+
 
 Button.propTypes = {
     onClick: PropTypes.func,
